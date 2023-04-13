@@ -24,7 +24,6 @@ public:
 	{
 		DeathValue = true;
 	}
-
 	bool IsUpdate()
 	{
 		return UpdateValue;

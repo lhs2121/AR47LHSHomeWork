@@ -1,5 +1,6 @@
 #include "GameEngineDebug.h"
 #include <crtdbg.h>
+#include <iostream>
 
 GameEngineDebug::GameEngineDebug()
 {
@@ -7,6 +8,7 @@ GameEngineDebug::GameEngineDebug()
 
 GameEngineDebug::~GameEngineDebug()
 {
+	
 }
 
 
