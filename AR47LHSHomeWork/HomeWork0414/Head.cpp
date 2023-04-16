@@ -1,25 +1,20 @@
 #include "Head.h"
+#include "Body.h"
+#include "Parts.h"
 #include <conio.h>
 #include <GameEngineConsole/ConsoleGameScreen.h>
+#include <GameEngineConsole/ConsoleObjectManager.h>
+
 
 bool Head::IsPlay = true;
 
-Head::Head() 
+Head::Head()
 {
 	RenderChar = '$';
 	SetPos(ConsoleGameScreen::GetMainScreen().GetScreenSize().Half());
 }
 
-Head::~Head() 
-{
-}
-
-void Head::IsBodyCheck()
-{
-
-}
-
-void Head::NewBodyCreateCheck()
+Head::~Head()
 {
 
 }
@@ -71,9 +66,32 @@ void Head::Update()
 		return;
 	}
 
+	SetPrevPos(GetPos());
 	SetPos(GetPos() + Dir);
-	IsBodyCheck();
-	NewBodyCreateCheck();
+
+	if (GetNextParts() == nullptr)
+	{
+		std::list<ConsoleGameObject*>& bodygroup = ConsoleObjectManager::GetGroup(1);
+
+		for (ConsoleGameObject* ptr : bodygroup)
+		{
+			if (ptr != nullptr && ptr->GetPos() == GetPos())
+			{
+				SetNextParts((Parts*)ptr);
+				GetNextParts()->SetPos(PrevPos);
+				ConsoleObjectManager::CreateConsoleObject<Body>(1);
+			}
+		}
+	}
+	else
+	{
+		GetNextParts()->SetPos(PrevPos);
+	}
+	
+	
+
+
+
 
 	if (true == ConsoleGameScreen::GetMainScreen().IsScreenOver(GetPos()))
 	{

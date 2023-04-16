@@ -31,43 +31,12 @@ void ConsoleGameScreen::ScreenPrint() const
 
 ConsoleGameScreen::~ConsoleGameScreen()
 {
-	//for (size_t i = 0; i < Size.Y; i++)
-	//{
-	//	if (nullptr == ArrScreen[i])
-	//	{
-	//		continue;
-	//	}
-	//	delete[] ArrScreen[i];
-	//	ArrScreen[i] = nullptr;
-	//}
-
-	//if (nullptr != ArrScreen)
-	//{
-	//	delete[] ArrScreen;
-	//	ArrScreen = nullptr;
-	//}
 }
 
 void ConsoleGameScreen::SetScreenSize(int2 _Size)
 {
 	Size = _Size;
 
-	// ArrScreen[y][x]
-
-	// char**
-	// ArrScreen = new char* Arr[y];
-
-	//ArrScreen = new char*[Size.Y];
-
-	//for (size_t i = 0; i < Size.Y; i++)
-	//{
-	//	// ArrScreen == char**
-	//	// ArrScreen[i] == char*
-	//	ArrScreen[i] = new char[Size.X];
-	//}
-
-	// ArrScreen == GameEngineArray<GameEngineArray<char>>
-	// ArrScreen DataType == GameEngineArray<char>
 	ArrScreen.ReSize(Size.Y);
 
 	for (size_t i = 0; i < Size.Y; i++)

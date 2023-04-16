@@ -17,6 +17,19 @@ public:
 
 protected:
 	void Update() override;
+	void SetNextParts(Parts* _parts)
+	{
+		Next = _parts;
+		_parts->Prev = this;
+	}
+	Parts* GetNextParts()
+	{
+		return Next;
+	}
+	Parts* GetPrevParts()
+	{
+		return Prev;
+	}
 
 private:
 	Parts* Next;

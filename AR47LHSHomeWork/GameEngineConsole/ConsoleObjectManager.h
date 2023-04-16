@@ -66,5 +66,7 @@ private:
 	ConsoleObjectManager& operator=(ConsoleObjectManager&& _Other) noexcept = delete;
 
 	static std::vector<std::list<ConsoleGameObject*>> AllObject;
+
+	
 };
 

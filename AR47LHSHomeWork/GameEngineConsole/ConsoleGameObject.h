@@ -9,6 +9,10 @@ public:
 	{
 		Pos = _Value;
 	}
+	inline void SetPrevPos(const int2& _Value)
+	{
+		PrevPos = _Value;
+	}
 
 	inline int2 GetPos() const
 	{
@@ -38,7 +42,7 @@ public:
 	{
 		UpdateValue = false;
 	}
-
+	
 	virtual void Update();
 	virtual void Render();
 
@@ -46,9 +50,12 @@ protected:
 	int2 Pos;
 	char RenderChar = ' ';
 
+	int2 PrevPos;
+
 private:
 	bool UpdateValue = true;
 	bool DeathValue = false;
+	
 
 };
 

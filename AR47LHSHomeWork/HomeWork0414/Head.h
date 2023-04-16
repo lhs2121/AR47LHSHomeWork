@@ -1,5 +1,7 @@
 #pragma once
 #include "Parts.h"
+#include "Body.h"
+#include <vector>
 
 // Ό³Έν :
 class Head : public Parts
@@ -19,8 +21,7 @@ public:
 
 protected:
 	void Update() override;
-	void IsBodyCheck();
-	void NewBodyCreateCheck();
+
 
 private:
 	int2 Dir = int2::Up;
