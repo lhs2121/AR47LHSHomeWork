@@ -13,7 +13,10 @@ public:
 	{
 		PrevPos = _Value;
 	}
-
+	inline int2 GetPrevPos() const
+	{
+		return PrevPos;
+	}
 	inline int2 GetPos() const
 	{
 		return Pos;
@@ -43,6 +46,11 @@ public:
 		UpdateValue = false;
 	}
 	
+	void SetOnHead()
+	{
+		OnHead = true;
+	}
+
 	virtual void Update();
 	virtual void Render();
 
@@ -51,7 +59,7 @@ protected:
 	char RenderChar = ' ';
 
 	int2 PrevPos;
-
+	bool OnHead = false;
 private:
 	bool UpdateValue = true;
 	bool DeathValue = false;

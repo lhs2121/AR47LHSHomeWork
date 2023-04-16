@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineConsole/ConsoleGameObject.h>
+#include <iostream>
 
 // Ό³Έν :
 class Parts : public ConsoleGameObject
@@ -15,12 +16,23 @@ public:
 	Parts& operator=(const Parts& _Other) = delete;
 	Parts& operator=(Parts&& _Other) noexcept = delete;
 
+	
+
 protected:
 	void Update() override;
 	void SetNextParts(Parts* _parts)
 	{
-		Next = _parts;
-		_parts->Prev = this;
+		if (Next != nullptr)
+		{
+			Next->SetNextParts(_parts);
+			
+		}
+		else
+		{
+			Next = _parts;
+			_parts->Prev = this;
+			
+		}
 	}
 	Parts* GetNextParts()
 	{
@@ -30,9 +42,12 @@ protected:
 	{
 		return Prev;
 	}
+	
+	
 
 private:
-	Parts* Next;
-	Parts* Prev;
+	Parts* Next = nullptr;
+	Parts* Prev = nullptr;
+	
 };
 

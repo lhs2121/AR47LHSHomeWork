@@ -19,6 +19,20 @@ Head::~Head()
 
 }
 
+void Head::IsBodyCheck()
+{
+	std::list<ConsoleGameObject*>& bodygroup = ConsoleObjectManager::GetGroup(1);
+
+	for (ConsoleGameObject* ptr : bodygroup)
+	{
+		if (ptr != nullptr && ptr->GetPos() == GetPos())
+		{
+			ptr->SetOnHead();
+			SetNextParts((Parts*)ptr);
+		}
+	} 
+}
+
 // 화면바깥으로 못나가게 하세요. 
 void Head::Update()
 {
@@ -69,29 +83,8 @@ void Head::Update()
 	SetPrevPos(GetPos());
 	SetPos(GetPos() + Dir);
 
-	if (GetNextParts() == nullptr)
-	{
-		std::list<ConsoleGameObject*>& bodygroup = ConsoleObjectManager::GetGroup(1);
-
-		for (ConsoleGameObject* ptr : bodygroup)
-		{
-			if (ptr != nullptr && ptr->GetPos() == GetPos())
-			{
-				SetNextParts((Parts*)ptr);
-				GetNextParts()->SetPos(PrevPos);
-				ConsoleObjectManager::CreateConsoleObject<Body>(1);
-			}
-		}
-	}
-	else
-	{
-		GetNextParts()->SetPos(PrevPos);
-	}
+	IsBodyCheck();
 	
-	
-
-
-
 
 	if (true == ConsoleGameScreen::GetMainScreen().IsScreenOver(GetPos()))
 	{

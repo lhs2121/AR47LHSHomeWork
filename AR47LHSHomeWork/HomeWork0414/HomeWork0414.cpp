@@ -15,20 +15,28 @@ int main()
 {
 	GameEngineDebug::LeckCheck();
 
-	int2 ScreenSize = { 2, 2 };
+	int2 ScreenSize = { 9, 9 };
 	ConsoleGameScreen::GetMainScreen().SetScreenSize(ScreenSize);
 
-    ConsoleObjectManager::CreateConsoleObject<Head>(0);
+    Head* h = ConsoleObjectManager::CreateConsoleObject<Head>(0);
 
+	ConsoleObjectManager::CreateConsoleObject<Body>(1);
+	ConsoleObjectManager::CreateConsoleObject<Body>(1);
+	ConsoleObjectManager::CreateConsoleObject<Body>(1);
+	ConsoleObjectManager::CreateConsoleObject<Body>(1);
+	ConsoleObjectManager::CreateConsoleObject<Body>(1);
+	ConsoleObjectManager::CreateConsoleObject<Body>(1);
+	ConsoleObjectManager::CreateConsoleObject<Body>(1);
 	ConsoleObjectManager::CreateConsoleObject<Body>(1);
 	
 	
 
-	while (true == Head::IsPlay)
+	while (true == Head::IsPlay) 
 	{
 		ConsoleObjectManager::ConsoleAllObjectUpdate();
 		ConsoleObjectManager::ConsoleAllObjectRender();
 		ConsoleObjectManager::ConsoleAllObjectRelease();
+
 		Sleep(200);
 	}
 
