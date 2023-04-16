@@ -129,9 +129,11 @@
   <ItemGroup>
     <ClCompile Include="GameEngineBase.cpp" />
     <ClCompile Include="GameEngineDebug.cpp" />
+    <ClCompile Include="GameEngineRandom.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngineDebug.h" />
+    <ClInclude Include="GameEngineRandom.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

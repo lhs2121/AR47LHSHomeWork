@@ -25,17 +25,16 @@ void Bomb::Update()
 	if (CurExpPower == MaxExpPower)
 	{
 		Death();
-		// Off();
+
 	}
 
-	if (0 >= --BoomCount)
+	if (--BoomCount <= 0)
 	{
 		CurExpPower++;
 	}
+
 }
-// boomcount 5 4 3 2 1 0
-// curexppower         0 1 2 3 4 5
-//                                /death
+
 
 void Bomb::Render()
 {
@@ -53,4 +52,5 @@ void Bomb::Render()
 		ConsoleGameScreen::GetMainScreen().SetScreenCharacter(Up, '#');
 		ConsoleGameScreen::GetMainScreen().SetScreenCharacter(Down, '#');
 	}
+
 }

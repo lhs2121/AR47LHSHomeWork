@@ -14,9 +14,13 @@ public:
 
 	bool IsBomb(int2 _NextPos);
 
+	bool IsItem(int2 _NextPos);
+
+	void EatItem();
+
 protected:
 
 private:
-	int BombPower = 5;
+	int BombPower = 1;
 };
 

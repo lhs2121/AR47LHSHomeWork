@@ -19,13 +19,16 @@ public:
 
 	void Init(int _BombPower);
 
+
 protected:
 	void Update() override;
 	void Render() override;
+
 
 private:
 	int BoomCount = 5;
 	int MaxExpPower = 5;
 	int CurExpPower = 0;
+
 };
 
