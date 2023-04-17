@@ -43,13 +43,14 @@ void Body::Update()
 {
 	if (OnHead)
 	{
-		SetPrevPos(GetPos());
+		
 		SetPos(GetPrevParts()->GetPrevPos());
-		RenderChar = 'A';
+		RenderChar = 'O';
 		ConsoleGameObject::Update();
 	}
 	else
 	{
+		SetPrevPos(GetPos());
 		ConsoleGameObject::Update();
 	}
 	

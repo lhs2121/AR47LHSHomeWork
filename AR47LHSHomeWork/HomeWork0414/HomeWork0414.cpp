@@ -20,14 +20,7 @@ int main()
 
     Head* h = ConsoleObjectManager::CreateConsoleObject<Head>(0);
 
-	ConsoleObjectManager::CreateConsoleObject<Body>(1);
-	ConsoleObjectManager::CreateConsoleObject<Body>(1);
-	ConsoleObjectManager::CreateConsoleObject<Body>(1);
-	ConsoleObjectManager::CreateConsoleObject<Body>(1);
-	ConsoleObjectManager::CreateConsoleObject<Body>(1);
-	ConsoleObjectManager::CreateConsoleObject<Body>(1);
-	ConsoleObjectManager::CreateConsoleObject<Body>(1);
-	ConsoleObjectManager::CreateConsoleObject<Body>(1);
+	Body* b = ConsoleObjectManager::CreateConsoleObject<Body>(1);
 	
 	
 
@@ -37,6 +30,11 @@ int main()
 		ConsoleObjectManager::ConsoleAllObjectRender();
 		ConsoleObjectManager::ConsoleAllObjectRelease();
 
+		printf("head.prevPos.X : %d\n head.prevPos.Y : %d\n\n", h->GetPrevPos().X, h->GetPrevPos().Y);
+		printf("head.pos.X : %d\n head.pos.Y : %d\n\n", h->GetPos().X, h->GetPos().Y);
+
+		printf("bullet.prevPos.X : %d\n bullet.prevPos.Y : %d\n\n", b->GetPrevPos().X, b->GetPrevPos().Y);
+		printf("bullet.pos.X : %d\n bullet.pos.Y : %d\n\n", b->GetPos().X, b->GetPos().Y);
 		Sleep(200);
 	}
 

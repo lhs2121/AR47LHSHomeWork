@@ -25,13 +25,11 @@ protected:
 		if (Next != nullptr)
 		{
 			Next->SetNextParts(_parts);
-			
 		}
 		else
 		{
 			Next = _parts;
 			_parts->Prev = this;
-			
 		}
 	}
 	Parts* GetNextParts()

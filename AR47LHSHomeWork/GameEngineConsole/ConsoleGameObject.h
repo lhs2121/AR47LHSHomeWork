@@ -50,6 +50,10 @@ public:
 	{
 		OnHead = true;
 	}
+	bool GetOnHead()
+	{
+		return OnHead;
+	}
 
 	virtual void Update();
 	virtual void Render();

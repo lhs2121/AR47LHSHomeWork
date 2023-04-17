@@ -27,8 +27,16 @@ void Head::IsBodyCheck()
 	{
 		if (ptr != nullptr && ptr->GetPos() == GetPos())
 		{
-			ptr->SetOnHead();
-			SetNextParts((Parts*)ptr);
+			if (ptr->GetOnHead())
+			{
+				
+			}
+			else
+			{
+				ptr->SetOnHead();
+				ptr->SetPrevPos(GetPos());
+				SetNextParts((Parts*)ptr);
+			}
 		}
 	} 
 }
