@@ -1,5 +1,7 @@
 #include "Parts.h"
 
+Parts* Parts::firstParts;
+
 Parts::Parts() 
 {
 }

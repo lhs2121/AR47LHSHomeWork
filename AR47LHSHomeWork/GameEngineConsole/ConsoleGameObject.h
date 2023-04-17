@@ -55,6 +55,11 @@ public:
 		return OnHead;
 	}
 
+	bool GetIsMove()
+	{
+		return isMove;
+	}
+
 	virtual void Update();
 	virtual void Render();
 
@@ -64,6 +69,7 @@ protected:
 
 	int2 PrevPos;
 	bool OnHead = false;
+	bool isMove = false;
 private:
 	bool UpdateValue = true;
 	bool DeathValue = false;

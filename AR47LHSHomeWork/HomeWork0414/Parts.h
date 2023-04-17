@@ -16,7 +16,7 @@ public:
 	Parts& operator=(const Parts& _Other) = delete;
 	Parts& operator=(Parts&& _Other) noexcept = delete;
 
-	
+	static Parts* firstParts;
 
 protected:
 	void Update() override;
@@ -30,6 +30,7 @@ protected:
 		{
 			Next = _parts;
 			_parts->Prev = this;
+
 		}
 	}
 	Parts* GetNextParts()
@@ -41,11 +42,11 @@ protected:
 		return Prev;
 	}
 	
-	
 
 private:
 	Parts* Next = nullptr;
 	Parts* Prev = nullptr;
+	
 	
 };
 

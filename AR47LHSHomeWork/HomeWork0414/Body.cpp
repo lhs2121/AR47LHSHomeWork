@@ -1,5 +1,4 @@
 #include "Body.h"
-#include "Head.h"
 #include <GameEngineBase/GameEngineRandom.h>
 #include <GameEngineConsole/ConsoleGameScreen.h>
 #include <GameEngineConsole/ConsoleObjectManager.h>
@@ -41,17 +40,17 @@ Body::~Body()
 
 void Body::Update()
 {
-	if (OnHead)
+	if (OnHead && (Parts::firstParts->GetIsMove() == true))
 	{
-		
+		SetPrevPos(GetPos());
 		SetPos(GetPrevParts()->GetPrevPos());
+
+
 		RenderChar = 'O';
 		ConsoleGameObject::Update();
 	}
 	else
 	{
-		SetPrevPos(GetPos());
 		ConsoleGameObject::Update();
-	}
-	
+	} 
 }

@@ -34,7 +34,6 @@ void Head::IsBodyCheck()
 			else
 			{
 				ptr->SetOnHead();
-				ptr->SetPrevPos(GetPos());
 				SetNextParts((Parts*)ptr);
 			}
 		}
@@ -52,6 +51,7 @@ void Head::Update()
 
 	if (0 == _kbhit())
 	{
+		isMove = false;
 		// SetPos(GetPos() + Dir);
 		// IsBodyCheck();
 		// NewBodyCreateCheck();
@@ -88,6 +88,7 @@ void Head::Update()
 		return;
 	}
 
+	isMove = true;
 	SetPrevPos(GetPos());
 	SetPos(GetPos() + Dir);
 
