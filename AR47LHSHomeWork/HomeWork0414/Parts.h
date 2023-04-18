@@ -1,6 +1,6 @@
 #pragma once
 #include <GameEngineConsole/ConsoleGameObject.h>
-#include <iostream>
+#include <GameEngineBase/GameEngineDebug.h>
 
 // 설명 :
 class Parts : public ConsoleGameObject
@@ -16,37 +16,57 @@ public:
 	Parts& operator=(const Parts& _Other) = delete;
 	Parts& operator=(Parts&& _Other) noexcept = delete;
 
-	static Parts* firstParts;
-
-protected:
-	void Update() override;
-	void SetNextParts(Parts* _parts)
+	inline Parts* GetLast()
 	{
-		if (Next != nullptr)
+		if (nullptr == Next)
 		{
-			Next->SetNextParts(_parts);
+			return this;
 		}
-		else
-		{
-			Next = _parts;
-			_parts->Prev = this;
 
-		}
+		return Next->GetLast();
 	}
-	Parts* GetNextParts()
+
+	inline Parts* GetNext()
 	{
 		return Next;
 	}
-	Parts* GetPrevParts()
-	{
-		return Prev;
-	}
-	
 
+	inline void SetNext(Parts* _Next)
+	{
+		if (nullptr == _Next)
+		{
+			MsgBoxAssert("자신의 NextNode를 nullptr로 세팅하려고 했습니다.");
+		}
+
+		Next = _Next;
+	}
+
+	inline int2 GetPrevPos()
+	{
+		return PrevPos;
+	}
+
+
+	inline void SetPos(const int2& _Value) override
+	{
+		PrevPos = GetPos();
+		ConsoleGameObject::SetPos(_Value);
+	}
+
+
+	void NextMove();
+
+
+
+protected:
+	void Update() override;
+
+	virtual void ChangeRenderChar();
 private:
-	Parts* Next = nullptr;
-	Parts* Prev = nullptr;
-	
-	
+	int2 Dir = int2::Zero;
+	int2 PrevPos = int2::Zero;
+
+	Parts* Prev;
+	Parts* Next;
 };
 

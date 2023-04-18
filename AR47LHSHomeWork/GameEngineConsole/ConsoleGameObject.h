@@ -5,18 +5,11 @@
 class ConsoleGameObject
 {
 public:
-	inline void SetPos(const int2& _Value)
+	virtual inline void SetPos(const int2& _Value)
 	{
 		Pos = _Value;
 	}
-	inline void SetPrevPos(const int2& _Value)
-	{
-		PrevPos = _Value;
-	}
-	inline int2 GetPrevPos() const
-	{
-		return PrevPos;
-	}
+
 	inline int2 GetPos() const
 	{
 		return Pos;
@@ -31,9 +24,10 @@ public:
 	{
 		DeathValue = true;
 	}
+
 	bool IsUpdate()
 	{
-		return UpdateValue;
+		return UpdateValue && false == IsDeath();
 	}
 
 	void On()
@@ -45,35 +39,17 @@ public:
 	{
 		UpdateValue = false;
 	}
-	
-	void SetOnHead()
-	{
-		OnHead = true;
-	}
-	bool GetOnHead()
-	{
-		return OnHead;
-	}
-
-	bool GetIsMove()
-	{
-		return isMove;
-	}
 
 	virtual void Update();
 	virtual void Render();
 
 protected:
 	int2 Pos;
-	char RenderChar = ' ';
+	wchar_t RenderChar = L'£À';
 
-	int2 PrevPos;
-	bool OnHead = false;
-	bool isMove = false;
 private:
 	bool UpdateValue = true;
 	bool DeathValue = false;
-	
 
 };
 
