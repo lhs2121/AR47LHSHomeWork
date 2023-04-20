@@ -12,26 +12,30 @@ void Parts::Update()
 {
 	ConsoleGameObject::Update();
 
-	ChangeRenderChar();
 }
 
 void Parts::ChangeRenderChar()
 {
-	if (GetPrevPos() == (GetPos() - int2::Left))
+	if (Next != nullptr)
 	{
-		RenderChar = L'¢·';
-	}
-	else if (GetPrevPos() == (GetPos() - int2::Right))
-	{
-		RenderChar = L'¢¹';
-	}
-	else if (GetPrevPos() == (GetPos() - int2::Up))
-	{
-		RenderChar = L'¡â';
-	}
-	else if (GetPrevPos() == (GetPos() - int2::Down))
-	{
-		RenderChar = L'¡ä';
+		int2 NextPos = Next->GetPos();
+		int2 Dir = Pos - NextPos;
+		if (Dir == int2::Left)
+		{
+			Next->RenderChar = L'¢¸';
+		}
+		else if (Dir == int2::Right)
+		{
+			Next->RenderChar = L'¢º';
+		}
+		else if (Dir == int2::Up)
+		{
+			Next->RenderChar = L'¡ã';
+		}
+		else if (Dir == int2::Down)
+		{
+			Next->RenderChar = L'¡å';
+		}
 	}
 }
 
@@ -45,6 +49,9 @@ void Parts::NextMove()
 	}
 
 	Next->SetPos(GetPrevPos());
+
+	ChangeRenderChar();
+
 	return Next->NextMove();
 }
 

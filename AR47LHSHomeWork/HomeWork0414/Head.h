@@ -22,7 +22,6 @@ protected:
 	void IsBodyCheck();
 	void NewBodyCreateCheck();
 
-	void ChangeRenderChar() override;
 private:
 	int2 Dir = int2::Up;
 

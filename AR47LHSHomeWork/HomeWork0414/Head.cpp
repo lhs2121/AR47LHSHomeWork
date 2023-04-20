@@ -18,25 +18,6 @@ Head::~Head()
 {
 }
 
-void Head::ChangeRenderChar()
-{
-	if (GetPrevPos() == (GetPos() - int2::Left))
-	{
-		RenderChar = L'¢¸';
-	}
-	else if (GetPrevPos() == (GetPos() - int2::Right))
-	{
-		RenderChar = L'¢º';
-	}
-	else if (GetPrevPos() == (GetPos() - int2::Up))
-	{
-		RenderChar = L'¡ã';
-	}
-	else if (GetPrevPos() == (GetPos() - int2::Down))
-	{
-		RenderChar = L'¡å';
-	}
-}
 
 void Head::IsBodyCheck()
 {
@@ -121,18 +102,22 @@ void Head::Update()
 	case 'a':
 	case 'A':
 		Dir = int2::Left;
+		RenderChar = L'¢¸';
 		break;
 	case 'd':
 	case 'D':
 		Dir = int2::Right;
+		RenderChar = L'¢º';
 		break;
 	case 'w':
 	case 'W':
 		Dir = int2::Up;
+		RenderChar = L'¡ã';
 		break;
 	case 's':
 	case 'S':
 		Dir = int2::Down;
+		RenderChar = L'¡å';
 		break;
 	case 'q':
 	case 'Q':
@@ -166,8 +151,6 @@ void Head::Update()
 	//}
 
 	NewBodyCreateCheck();
-
-	ChangeRenderChar();
 
 	if (true == ConsoleGameScreen::GetMainScreen().IsScreenOver(GetPos()))
 	{
