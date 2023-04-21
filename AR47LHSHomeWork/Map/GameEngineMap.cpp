@@ -8,6 +8,7 @@ int main()
 {
     {
         std::map<int, int> map;
+        map.
         std::map<int, int>::iterator iter = map.end();
         
 
@@ -15,14 +16,13 @@ int main()
 
     GameEngineMap map1;
 
-    GameEngineMap::iterator iter = map1.begin();
 
     map1.insert(pair(5, 0));
     map1.insert(pair(15, 0));
     map1.insert(pair(4, 0));
     map1.insert(pair(1, 0));
    
-
-    GameEngineMap::iterator iter2 = map1.begin();
+    GameEngineMap::MapNode* min = map1.GetMinNode();
+    
 }
 

@@ -7,7 +7,7 @@ class pair
 public:
 	pair()
 	{
-		
+
 	}
 	pair(Key k, Value v) : first(k), second(v)
 	{
@@ -16,7 +16,7 @@ public:
 
 
 	Key first;
-	Value second ;
+	Value second;
 };
 
 
@@ -40,6 +40,18 @@ public:
 
 		pair Pair;
 
+		MapNode* GetMin()
+		{
+			if (LeftNode != nullptr) // 호출자의 left가 있다면
+			{
+				return LeftNode->GetMin(); // 호출자의 left의 GetMin() 호출
+			}
+
+			MapNode* MinNode = this;
+
+			return MinNode;
+		}
+
 
 		bool insert(MapNode* _NewNode)
 		{
@@ -47,12 +59,12 @@ public:
 			{
 				if (this->LeftNode != nullptr)
 				{
-					return this->LeftNode->insert(_NewNode);	
+					return this->LeftNode->insert(_NewNode);
 				}
 
 				this->LeftNode = _NewNode;
 				_NewNode->ParentNode = this;
-			
+
 				return true;
 
 			}
@@ -85,12 +97,16 @@ public:
 
 		iterator(MapNode* _node) : CurNode(_node)
 		{
-			
+
 		}
 
+		iterator operator++()
+		{
 
+		}
 		MapNode* CurNode;
 	};
+
 
 	iterator begin()
 	{
@@ -99,14 +115,16 @@ public:
 			iterator CurIterator = iterator(RootNode);
 			return CurIterator;
 		}
-		
+
 		return end();
 
 	}
+
 	iterator end()
 	{
 		return iterator();
 	}
+
 	bool insert(const pair& _pair)
 	{
 
