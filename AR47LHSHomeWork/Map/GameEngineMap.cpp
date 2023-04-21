@@ -2,9 +2,15 @@
 //
 
 #include <iostream>
+#include <map>
 #include "GameEngineMap.h"
 int main()
 {
+    {
+        std::map<int, int> map;
+        map.insert(std::make_pair(1, 0));
+
+    }
     GameEngineMap map1;
 
     map1.insert(pair(5, 0));
@@ -12,6 +18,5 @@ int main()
     map1.insert(pair(4, 0));
     map1.insert(pair(1, 0));
    
-
 }
 
