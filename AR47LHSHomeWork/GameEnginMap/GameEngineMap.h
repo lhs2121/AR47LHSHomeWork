@@ -3,7 +3,7 @@
 typedef int KeyType;
 typedef int ValueType;
 
-class GameEnginePair 
+class GameEnginePair
 {
 public:
 	KeyType first;
@@ -27,7 +27,7 @@ class GameEngineMap
 {
 public:
 
-	class MapNode 
+	class MapNode
 	{
 	public:
 		MapNode* Parent = nullptr;
@@ -40,7 +40,7 @@ public:
 			return nullptr;
 		}
 
-		MapNode* MinNode() 
+		MapNode* MinNode()
 		{
 			if (nullptr == LeftChild)
 			{
@@ -48,6 +48,30 @@ public:
 			}
 
 			return LeftChild->MinNode();
+		}
+
+		MapNode* find(KeyType _Key)
+		{
+			if (Pair.first > _Key)
+			{
+				if (nullptr != LeftChild)
+				{
+					return LeftChild->find(_Key);
+				}
+
+				return nullptr;
+			}
+			else if (Pair.first < _Key)
+			{
+				if (nullptr != RightChild)
+				{
+					return RightChild->find(_Key);
+				}
+
+				return nullptr;
+			}
+
+			return this;
 		}
 
 		bool insert(MapNode* _NewNode)
@@ -78,29 +102,7 @@ public:
 			return false;
 		}
 
-		MapNode* find(KeyType _Key)
-		{
-			if (Pair.first > _Key)
-			{
-				if (nullptr != LeftChild)
-				{
-					return LeftChild->find(_Key);
-				}
 
-				return nullptr;
-			}
-			else if (Pair.first < _Key)
-			{
-				if (nullptr != RightChild)
-				{
-					return RightChild->find(_Key);
-				}
-
-				return nullptr;
-			}
-
-			return this;
-		}
 	};
 
 	class iterator
@@ -121,7 +123,7 @@ public:
 
 		}
 
-		GameEnginePair* operator->() 
+		GameEnginePair* operator->()
 		{
 			return &Node->Pair;
 		}
@@ -132,7 +134,7 @@ public:
 			return Node != _Other.Node;
 		}
 
-		bool operator==(const iterator& _Other) const 
+		bool operator==(const iterator& _Other) const
 		{
 			return Node == _Other.Node;
 		}
@@ -141,8 +143,6 @@ public:
 		// 전방선언
 		class MapNode* Node = nullptr;
 	};
-
-
 
 	iterator begin()
 	{
@@ -154,7 +154,7 @@ public:
 		return iterator(Root->MinNode());
 	}
 
-	iterator end() 
+	iterator end()
 	{
 		return iterator();
 	}

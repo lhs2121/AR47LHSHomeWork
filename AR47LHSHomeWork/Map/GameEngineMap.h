@@ -22,6 +22,7 @@ public:
 
 class GameEngineMap
 {
+public:
 
 	class MapNode
 	{
@@ -31,6 +32,8 @@ class GameEngineMap
 
 		}
 
+		MapNode* ParentNode = nullptr;
+
 		MapNode* LeftNode = nullptr;
 
 		MapNode* RightNode = nullptr;
@@ -38,44 +41,33 @@ class GameEngineMap
 		pair Pair;
 
 
-		bool CompareKey(MapNode* _NewNode)
+		bool insert(MapNode* _NewNode)
 		{
 			if (this->Pair.first > _NewNode->Pair.first)
 			{
-
 				if (this->LeftNode != nullptr)
 				{
-					bool result = this->LeftNode->CompareKey(_NewNode);
-
-					if (result)
-					{
-						return true;
-					}
+					return this->LeftNode->insert(_NewNode);	
 				}
 
 				this->LeftNode = _NewNode;
-
+				_NewNode->ParentNode = this;
+			
 				return true;
 
 			}
-
 			else if (this->Pair.first < _NewNode->Pair.first)
 			{
-
 				if (this->RightNode != nullptr)
 				{
-					bool result = this->RightNode->CompareKey(_NewNode);
-
-					if (result)
-					{
-						return true;
-					}
+					return this->RightNode->insert(_NewNode);
 				}
 
 				this->RightNode = _NewNode;
+				_NewNode->ParentNode = this;
+
 				return true;
 			}
-
 			else
 			{
 				return false;
@@ -83,11 +75,39 @@ class GameEngineMap
 
 		}
 	};
+	class iterator
+	{
+	public:
+		iterator() : CurNode(nullptr)
+		{
+
+		}
+
+		iterator(MapNode* _node) : CurNode(_node)
+		{
+			
+		}
 
 
-public:
+		MapNode* CurNode;
+	};
 
-	bool insert(pair _pair)
+	iterator begin()
+	{
+		if (RootNode != nullptr)
+		{
+			iterator CurIterator = iterator(RootNode);
+			return CurIterator;
+		}
+		
+		return end();
+
+	}
+	iterator end()
+	{
+		return iterator();
+	}
+	bool insert(const pair& _pair)
 	{
 
 		MapNode* NewMap = new MapNode();
@@ -100,7 +120,7 @@ public:
 			return true;
 		}
 
-		if (false == RootNode->CompareKey(NewMap))
+		if (false == RootNode->insert(NewMap))
 		{
 			if (NewMap != nullptr)
 			{
@@ -111,7 +131,6 @@ public:
 	}
 
 private:
-
 	MapNode* RootNode = nullptr;
 };
 
