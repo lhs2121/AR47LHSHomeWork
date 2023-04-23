@@ -32,6 +32,14 @@ public:
 
 		}
 
+		~MapNode()
+		{
+			if (this != nullptr)
+			{
+				delete this;		
+			}
+			
+		}
 		MapNode* ParentNode = nullptr;
 
 		MapNode* LeftNode = nullptr;
@@ -47,12 +55,40 @@ public:
 				return LeftNode->GetMin(); // 호출자의 left의 GetMin() 호출
 			}
 
-			MapNode* MinNode = this;
-
-			return MinNode;
+			return this;
 		}
 
+		MapNode* GetNext()
+		{
+			if (RightNode != nullptr)
+			{
+				return RightNode->GetMin();
+			}
 
+			if (ParentNode != nullptr)
+			{
+				return GetOverParent();
+			}
+			
+			return nullptr;
+		}
+
+		MapNode* GetOverParent()
+		{
+			MapNode* p = ParentNode;
+
+			while (Pair.first > p->Pair.first)
+			{
+				p = ParentNode->ParentNode;
+
+				if (p == nullptr)
+				{
+					return nullptr;
+				}
+
+			}
+			return p;
+		}
 		bool insert(MapNode* _NewNode)
 		{
 			if (this->Pair.first > _NewNode->Pair.first)
@@ -86,6 +122,8 @@ public:
 			}
 
 		}
+
+
 	};
 	class iterator
 	{
@@ -100,10 +138,14 @@ public:
 
 		}
 
-		iterator operator++()
+		iterator& operator++()
 		{
+			CurNode = CurNode->GetNext();
+
+			return *this;
 
 		}
+
 		MapNode* CurNode;
 	};
 
@@ -112,7 +154,7 @@ public:
 	{
 		if (RootNode != nullptr)
 		{
-			iterator CurIterator = iterator(RootNode);
+			iterator CurIterator = iterator(RootNode->GetMin());
 			return CurIterator;
 		}
 
